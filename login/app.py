@@ -9,16 +9,17 @@ def home():
 
 @app.route("/login",methods=["GET","POST"])
 def login():
-    name=request.form['user']
-    passwd=request.form['passwd']
-    c,conn=connection()
-    c.execute("use example")
-    udata=c.execute("select * from user where name='{0}'".format(name))
-    udata=c.fetchone()
-    if sha256_crypt.verify(passwd,udata[3]):
-        return str(udata)
-    else:
-        return "wrong credential"
+    if request.method=="POST":
+        name=request.form['user']
+        passwd=request.form['passwd']
+        c,conn=connection()
+        c.execute("use example")
+        udata=c.execute("select * from user where name='{0}'".format(name))
+        udata=c.fetchone()
+        if sha256_crypt.verify(passwd,udata[3]):
+            return str(udata)
+        else:
+            return "wrong credential"
 
 @app.route("/signup",methods=["POST"])
 def signup():
@@ -33,4 +34,4 @@ def signup():
     conn.close()
     return "submitted"
 if __name__ == '__main__':
-    app.run(debug='True')
+    app.run(debug='True',port='8000')

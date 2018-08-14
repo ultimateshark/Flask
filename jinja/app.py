@@ -3,25 +3,9 @@ app=Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello"
+    return render_template('index.html',ls=["hello","manish","pandey","green"])
 
-@app.route("/firstpage")
-def firstpage():
-    return "My First Web Page!!!"
-
-
-@app.route("/secondpage/<int:num>")
-def secondpage(num):
-    if num==0:
-        return redirect(url_for("index"))
-    return str(num)
-
-
-
-@app.route("/index")
-def index():
-    return render_template("index.html")
 
 
 if __name__ == '__main__':
-    app.run(debug='True')
+    app.run(debug='True',port='8000',host='0.0.0.0')
