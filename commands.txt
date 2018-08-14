@@ -1,0 +1,8 @@
+sudo apt-get install python
+sudo apt-get install python-pip
+sudo apt-get install apache2 mysql-server mysql-client
+sudo apt-get install python-dev libmysqlclient-dev
+pip install MySQL-python
+pip install flask
+pip install flask-mail
+pip install passlib
