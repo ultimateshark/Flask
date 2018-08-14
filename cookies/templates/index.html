@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Flask Talk</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='index.css')}}">
+</head>
+<body>
+  <h1>Flask By Manish Pandey</h1>
+  <form action="{{url_for('login')}}" method="POST">
+    <label for="name">UserName</label>
+    <input type="text" id='name' name="user"><br>
+    <label for="passwd">Password:</label>
+    <input type="password" id='passwd' name="passwd"><br>
+    <button type="submit">Submit</button>
+  </form>
+  <h1>Sign UP</h1>
+  <form action="{{url_for('signup')}}" method="POST">
+    <label for="name">UserName</label>
+    <input type="text" id='name' name="user"><br>
+    <label for="mail">Email:</label>
+    <input id="mail" name="email" type="email"><br>
+    <label for="passwd">Password:</label>
+    <input type="password" id='passwd' name="passwd"><br>
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
