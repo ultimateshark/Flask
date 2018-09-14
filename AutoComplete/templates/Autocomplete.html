@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>Text Autocomplete With FLask And JavaScript</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js" ></script>
+<script>
+function textautocomplete()
+{
+    const request = new XMLHttpRequest();
+    const key = document.querySelector('#inputfirst').value;
+
+    request.open('POST', '{{url_for('autocomplete')}}');
+      request.onload = () => {
+           const data = JSON.parse(request.responseText);
+
+               $('#inputfirst').autocomplete({
+                   source: data,
+                   minLength: 2
+               });
+      }
+      if (key.length==2) {
+      const data = new FormData();
+      data.append('key', key);
+      request.send(data);
+      return false;
+}
+};
+</script>
+</head>
+<body>
+  <input type="text" oninput="textautocomplete()" placeholder="Enter manish or good etc!!!" id="inputfirst" name="autocomp"  required><br/>
+</body>
+
+<style>
+
+			 .ui-helper-hidden-accessible{
+			 display:none;
+			 }
+			 .ui-corner-all
+			 {
+
+			 }
+			 .ui-widget-content
+			 {
+
+					 color: black;
+					 background-color:#fff;
+					 border:1px solid rgba(0,0,0,0.5);
+					 box-shadow:0   10px 17px -10px rgba(0,0,0,0.5);
+					 border-radius:5px;
+}
+
+
+			 }
+			 .ui-widget
+			 {
+					 font-family:'Nunito'sans-serif;
+					 font-size: 15px;
+
+			 }
+			 .ui-menu
+			 {
+			 width:20%;
+					 display: block;
+					 float: left;
+					 list-style: none outside none;
+					 margin: 0;
+					 padding: 2px;
+			 }
+			 .ui-autocomplete
+			 {
+					 cursor: default;
+					 position: absolute;
+					 max-height: none;
+			 }
+			 .ui-menu .ui-menu-item
+			 {
+					 clear: left;
+					 float: left;
+					 margin: 0;
+					 padding: 0;
+					 width:100%;
+
+
+
+			 }
+			 .ui-menu .ui-menu-item a
+			 {
+					 display: block;
+					 padding: 3px 3px 3px 3px;
+					 text-decoration: none;
+					 cursor: pointer;
+
+			 }
+
+
+			 .ui-menu .ui-menu-item:hover
+			 {
+					 display: block;
+
+					 text-decoration: none;
+					 color:#000;
+					 cursor: pointer;
+					 background-color:rgba(0,0,0,0.2);
+			 }
+			 .ui-widget-content a
+			 {
+					 color: #222222;
+			 }
+	 </style>
+
+</html>
