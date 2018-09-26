@@ -3,18 +3,24 @@ from mysqldb import connection
 from passlib.hash import sha256_crypt
 from flask_mail import Mail,Message
 app=Flask(__name__)
-
+#Configuration for gmail
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT']=465
-app.config['MAIL_USERNAME']='in.hodophile@gmail.com'
+app.config['MAIL_USERNAME']='YourEmail@gmail.com'
 app.config['MAIL_PASSWORD']='**************'
 app.config['MAIL_USE_TLS']=False
 app.config['MAIL_USE_SSL']=True
 mail=Mail(app)
 
-
-
-
+"""Configuration For WorkMail
+app.config['MAIL_SERVER']='smtp.mail.us-west-2.awsapps.com'
+app.config['MAIL_PORT']=465
+app.config['MAIL_USERNAME']='youremail@yoursite.in'
+app.config['MAIL_PASSWORD']='**********'
+app.config['MAIL_USE_TLS']=False
+app.config['MAIL_USE_SSL']=True
+mail=Mail(app)
+"""
 @app.route("/")
 def home():
     return render_template("index.html")
